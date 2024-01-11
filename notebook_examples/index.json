@@ -1,5 +1,18 @@
 [
   {
+    "developed_on": "armtest_p38_cpu_aarch64_v1",
+    "filename": "arm_showcase_notebook.ipynb",
+    "keywords": [
+      "arm",
+      "showcase"
+    ],
+    "license": "Universal Permissive License v 1.0",
+    "size": 104146,
+    "summary": "A notebook showcasing using the ARM conda pack",
+    "time_created": "2023-10-12T10:26:39",
+    "title": "ARM Showcase Notebook"
+  },
+  {
     "developed_on": "automlx_p38_cpu_v2",
     "filename": "automlx-anomaly_detection.ipynb",
     "keywords": [

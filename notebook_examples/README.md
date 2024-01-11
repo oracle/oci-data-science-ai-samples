@@ -12,9 +12,12 @@ The ADS SDK can be downloaded from [PyPi](https://pypi.org/project/oracle-ads/),
 
 
 ## Topics
+
 <img src="https://img.shields.io/badge/deploy model-8-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/register model-7-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/train model-7-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/automlx-5-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/data flow-4-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/pyspark-4-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/bds-3-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/oracle open data-3-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/scikit learn-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/big data service-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/nlp-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/autonomous database-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/language services-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/string manipulation-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/regex-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/regular expression-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/natural language processing-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/NLP-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/part of speech tagging-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/named entity recognition-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/sentiment analysis-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/custom plugins-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/data catalog metastore-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/xgboost-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/text classification-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/classification-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/regression-2-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/intel-1-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/intel extension-1-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/scikit learn-1-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> <img src="https://img.shields.io/badge/feature%20store-9-brightgreen?style=for-the-badge&logo=pypi&logoColor=white"> 
 
+
 ## Contents
+ - [ARM Showcase Notebook](#arm_showcase_notebook.ipynb)
  - [Audi Autonomous Driving Dataset Repository](#audi-autonomous_driving-oracle_open_data.ipynb)
  - [Bank Graph Example Notebook](#graph_insight-autonomous_database.ipynb)
  - [Building a Forecaster using AutoMLx](#automlx-forecasting.ipynb)
@@ -68,6 +71,22 @@ The ADS SDK can be downloaded from [PyPi](https://pypi.org/project/oracle-ads/),
 
 
 ## Notebooks
+### <a name="arm_showcase_notebook.ipynb"></a> - ARM Showcase Notebook
+
+<sub>Updated: 10/12/2023</sub>
+#### [`arm_showcase_notebook.ipynb`](arm_showcase_notebook.ipynb)
+
+ 
+A notebook showcasing using the ARM conda pack
+
+This notebook was developed on the conda pack with slug: `armtest_p38_cpu_aarch64_v1`
+
+ 
+`arm`  `showcase`
+
+<sub>Universal Permissive License v 1.0</sup>
+
+---
 ### <a name="automlx-anomaly_detection.ipynb"></a> - Building and Explaining an Anomaly Detector using AutoMLx - Experimental
 
 <sub>Updated: 05/29/2023</sub>
