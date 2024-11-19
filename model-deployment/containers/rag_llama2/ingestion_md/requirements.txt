@@ -1,7 +1,7 @@
 langchain==0.1.11
 llama-cpp-python==0.2.15
 oci==2.47.1
-requests==2.25.1
+requests==2.31.0
 uvicorn
 fastapi
 qdrant-client==1.9.0
