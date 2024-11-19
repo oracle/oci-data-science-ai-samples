@@ -1,0 +1,53 @@
+{{- if .Values.autoscaling.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: "feature-store-dp-api"
+  labels:
+    {{- include "feature-store-dp-api.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "feature-store-dp-api.fullname" . }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  behavior:
+    scaleDown:
+      selectPolicy: Min
+      stabilizationWindowSeconds: {{ .Values.autoscaling.scaleDown.stabilizationWindowSeconds }}
+      policies:
+        - periodSeconds: {{ .Values.autoscaling.scaleDown.periodSeconds }}
+          type: Percent
+          value: {{ .Values.autoscaling.scaleDown.percentage }}
+        - periodSeconds: {{ .Values.autoscaling.scaleDown.periodSeconds }}
+          type: Pods
+          value: {{ .Values.autoscaling.scaleDown.podCount }}
+    scaleUp:
+      stabilizationWindowSeconds: {{ .Values.autoscaling.scaleUp.stabilizationWindowSeconds }}
+      policies:
+        - type: Percent
+          value: {{ .Values.autoscaling.scaleUp.percentage }}
+          periodSeconds: {{ .Values.autoscaling.scaleUp.periodSeconds }}
+        - type: Pods
+          value: {{ .Values.autoscaling.scaleUp.podCount }}
+          periodSeconds: {{ .Values.autoscaling.scaleUp.periodSeconds }}
+      selectPolicy: Max
+  metrics:
+    {{- if .Values.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage}}
+    {{- end }}
+    {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage}}
+    {{- end }}
+{{- end }}

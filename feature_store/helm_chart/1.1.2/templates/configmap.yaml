@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "feature-store-dp-api-configmap"
+  labels:
+    {{- include "feature-store-dp-api.labels" . | nindent 4 }}
+data:
+  MYSQL_USER: "{{.Values.db.mysql.username}}"
+  MYSQL_DB_URL: "{{.Values.db.mysql.jdbcURL}}"
+  MYSQL_AUTH_TYPE: "{{.Values.db.mysql.authType}}"
+  MYSQL_VAULT_OCID: "{{.Values.db.mysql.vault.vaultOcid}}"
+  MYSQL_VAULT_SECRET_NAME: "{{.Values.db.mysql.vault.secretName}}"

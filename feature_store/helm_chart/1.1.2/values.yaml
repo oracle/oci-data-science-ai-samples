@@ -1,0 +1,105 @@
+oci_meta:
+  repo: iad.ocir.io
+  images:
+    api:
+      image: /idogsu2ylimg/feature-store
+      tag: api-1.1.1
+    authoriser:
+      image: dummy
+      tag: dummy
+
+
+imagePullSecrets:
+- name: ocir-secret
+
+db:
+  configuredDB: "MYSQL"
+  mysql:
+    authType: "VAULT"
+    jdbcURL: ""
+    username: ""
+    vault:
+      vaultOcid: ""
+      secretName: ""
+
+resources:
+  limits:
+    cpu: 1
+    memory: 4Gi
+  requests:
+    cpu: 1
+    memory: 2Gi
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "feature-store-dp-api"
+  namespace: "feature-store"
+
+podSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+
+service:
+  type: LoadBalancer
+  port: 80
+
+deploymentStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    # how many pods we can add at a time
+    maxSurge: 2
+    # maxUnavailable define how many pods can be unavailable during the rolling update
+    maxUnavailable: 0
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 80
+  #targetMemoryUtilizationPercentage: 80
+  ## https://github.com/kubernetes/kubernetes/issues/78761#issuecomment-1075814510  read this before enabling memory
+  scaleUp:
+    stabilizationWindowSeconds: 0
+    periodSeconds: 15
+    podCount: 1
+    percentage: 100
+  scaleDown:
+    stabilizationWindowSeconds: 300
+    periodSeconds: 20
+    podCount: 1
+    percentage: 20
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+applicationEnv:
+  containerName: "feature-store-dp-api"
+
+livenessProbe:
+  initialDelaySeconds: 120
+  periodSeconds: 30
+  timeoutSeconds: 30
+  faliureThreshold: 3
+
+readinessProbe:
+  initialDelaySeconds: 0
+  periodSeconds: 30
+  timeoutSeconds: 30
+  failureThreshold: 15
+
+# Pod env vars from k8s secret (preferred way to pass in MYSQL_PASSWORD)
+K8sSecret:
+  enabled: no
+  name:

@@ -1,0 +1,24 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: feature-store-dp-deployment
+  labels: {{- include "feature-store-dp-api.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["" , "apps", "autoscaling", "keda.sh", "metrics.k8s.io"]
+  resources: ["deployments", "replicasets", "pods", "namespaces", "services", "horizontalpodautoscalers" ,"configmaps", "scaledobjects"]
+  verbs: ["*"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "feature-store-dp-api.fullname" . }}
+  labels: {{- include "feature-store-dp-api.labels" . | nindent 4 }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "feature-store-dp-api.serviceAccountName" . }}
+  namespace: {{ .Values.serviceAccount.namespace }}
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: feature-store-dp-deployment
+  apiGroup: ""

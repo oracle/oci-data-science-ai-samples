@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "feature-store-dp-api"
+  labels:
+    {{- include "feature-store-dp-api.labels" . | nindent 4 }}
+  {{- if eq .Values.service.type "LoadBalancer" }}
+  annotations:
+    oci.oraclecloud.com/load-balancer-type: "nlb"
+    oci-network-load-balancer.oraclecloud.com/internal: "true"
+  {{- end }}
+
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 21000
+      protocol: TCP
+      name: https
+  selector:
+    {{- include "feature-store-dp-api.selectorLabels" . | nindent 4 }}
