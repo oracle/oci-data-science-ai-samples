@@ -1,0 +1,3 @@
+--extra-index-url="https://artifactory.oci.oraclecorp.com/api/pypi/global-dev-pypi/simple"
+--trusted-host="artifactory.oci.oraclecorp.com"
+oci==2.108.0
