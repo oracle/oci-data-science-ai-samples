@@ -108,11 +108,7 @@ cp config.pbtxt models/resnet
 
 #### Creating image locally
 ```
-mkdir -p tritonServer
-cd tritonServer
-git clone https://github.com/triton-inference-server/server.git -b v2.30.0 --depth 1
-cd server
-python compose.py --backend onnxruntime --backend pytorch --repoagent checksum --output-name $(OCIR_REGION).ocir.io/$(OCIR_NAMESPACE)/oci-datascience-triton-server/onnx-pytorch-runtime:1.0.0
+docker pull nvcr.io/nvidia/tritonserver:23.01-py3
 ```
 Refer  https://docs.oracle.com/en-us/iaas/data-science/using/mod-dep-byoc.htm#construct-container for details on uploading image to OCIR
 

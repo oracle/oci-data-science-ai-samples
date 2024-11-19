@@ -28,12 +28,9 @@ wget -O model_repository/densenet_onnx/1/model.onnx https://github.com/oracle-sa
 ### Step 1.2  Upload NVIDIA base triton server image to OCI Container Registry
 
 ```
+docker pull nvcr.io/nvidia/tritonserver:23.01-py3
 docker login $(OCIR_REGION).ocir.io
-mkdir -p tritonServer
-cd tritonServer
-git clone https://github.com/triton-inference-server/server.git -b v2.30.0 --depth 1
-cd server
-python compose.py --backend onnxruntime --repoagent checksum --output-name $(OCIR_REGION).ocir.io/$(OCIR_NAMESPACE)/oci-datascience-triton-server/onnx-runtime:1.0.0
+docker tag nvcr.io/nvidia/tritonserver:23.01-py3 $(OCIR_REGION).ocir.io/$(OCIR_NAMESPACE)/oci-datascience-triton-server/onnx-runtime:1.0.0
 docker push $(OCIR_REGION).ocir.io/$(OCIR_NAMESPACE)/oci-datascience-triton-server/onnx-runtime:1.0.0
 ```
 
