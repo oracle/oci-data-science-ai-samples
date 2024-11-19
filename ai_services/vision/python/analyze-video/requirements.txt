@@ -3,6 +3,6 @@ oci==2.53.2+preview.1.1343
 --extra-index-url="https://artifactory.oci.oraclecorp.com/api/pypi/ocas-service-platform-dev-pypi-local/simple/"
 --trusted-host=artifactory.oci.oraclecorp.com
 vision_service_python_client==0.3.60
-opencv-python==4.5.3.56
+opencv-python==4.8.1.78
 moviepy==1.0.3
 joblib==1.2.0
