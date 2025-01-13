@@ -334,6 +334,81 @@ public class RestExample {
 
 ```
 
+### Using `Langchain` with streaming
+
+#### Installation
+The LangChain OCIModelDeployment integration is part of the [`langchain-community`](https://python.langchain.com/docs/integrations/chat/oci_data_science/)  package.  The chat model integration requires **Python 3.9** or newer. Use the following command to install `langchain-community` along with its required dependencies.
+
+```python
+%pip install langgraph "langchain>=0.3" "langchain-community>=0.3" "langchain-openai>=0.2.3" "oracle-ads>2.12"
+```
+
+#### Using Langchain for Completion Endpoint
+```python
+import ads
+from langchain_community.llms import OCIModelDeploymentLLM
+
+# Set authentication through ads
+# Use resource principal are operating within a
+# OCI service that has resource principal based
+# authentication configured
+ads.set_auth("resource_principal")
+
+# Create an instance of OCI Model Deployment Endpoint
+# Replace the endpoint uri and model name with your own
+# Using generic class as entry point, you will be able
+# to pass model parameters through model_kwargs during
+# instantiation.
+llm = OCIModelDeploymentLLM(
+    endpoint="https://modeldeployment.<region>.oci.customer-oci.com/<md_ocid>/predict",
+    model="odsc-llm",
+    streaming=True,
+    model_kwargs={
+        "temperature": 0.2,
+        "max_tokens": 512,
+    },  # other model params...
+)
+
+# Run the LLM
+response = lm.invoke("Who is the first president of United States?")
+
+print(response.content)
+
+```
+
+#### Using Langchain for Chat Completion Endpoint
+```python
+import ads
+from langchain_community.chat_models import ChatOCIModelDeployment
+
+# Use resource principals for authentication
+ads.set_auth(auth="resource_principal")
+
+# Initialize the chat model with streaming support
+chat = ChatOCIModelDeployment(
+    model="odsc-llm",
+    endpoint="https://modeldeployment.<region>.oci.customer-oci.com/<md_ocid>/predict",
+    # Optionally you can specify additional keyword arguments for the model.
+    max_tokens=1024,
+    # Enable streaming
+    streaming=True
+)
+
+#Invocation
+messages = [
+    (
+        "system",
+        "You are a helpful assistant that translates English to French. Translate the user sentence.",
+    ),
+    ("human", "I love programming."),
+]
+
+response = chat.invoke(messages)
+print(response.content)
+```
+
+***Note:*** Mistral's instruction-tuned models, such as Mistral-7B-Instruct and Mixtral-8x7B-Instruct, do not natively support system prompts using the {"role": "system"} format.
+
 ## Multiple Inference endpoints
 
 The support for multiple model deployment inference endpoints ensures flexibility and enables users to perform inferencing on any endpoint, regardless of the endpoint specified during deployment creation.
